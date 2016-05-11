@@ -77,7 +77,24 @@
             $view.appendChild($button);
         };
 
-        player.resolve('https://soundcloud.com/djangodjango/first-light', render);
+        //player.resolve('https://soundcloud.com/djangodjango/first-light', render);
+        player.resolve('http://soundcloud.com/jxnblk/sets/yello', function (playlist) {
+            // do smth with array of `playlist.tracks` or playlist's metadata
+            // e.g. display playlist info in a view etc.
+            console.log(playlist);
+        
+            // once playlist is loaded it can be played
+            player.play();
+        
+            // for playlists it's possible to switch to another track in queue
+            // e.g. we do it here when playing track is finished 
+            player.on('ended', function () {
+                player.next();
+            });
+        
+            // play specific track from playlist by it's index
+            //scPlayer.play({playlistIndex: 2});
+        });
     })(this);
     </script>
 </body>
